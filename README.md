@@ -120,3 +120,6 @@ Clone the repository to your local machine. Run generate_ma_data.py to regenerat
 Praveen Kumar Nutakki
 Portfolio: praveenkumar66.framer.website
 GitHub: http://github.com/praveen66-BA/MA-Deal-Tracker---EY-Project/edit/main/README.md
+Email : praveennuthakki666@gmail.com
+Phone No : 9505802641
+
