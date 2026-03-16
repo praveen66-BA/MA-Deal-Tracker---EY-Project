@@ -1,0 +1,331 @@
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-sans); }
+.dash { padding: 16px; }
+.page-tabs { display: flex; gap: 4px; margin-bottom: 16px; border-bottom: 0.5px solid var(--color-border-tertiary); padding-bottom: 0; }
+.tab { padding: 8px 16px; font-size: 13px; color: var(--color-text-secondary); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; }
+.tab.active { color: var(--color-text-primary); border-bottom: 2px solid var(--color-text-primary); font-weight: 500; }
+.page { display: none; }
+.page.active { display: block; }
+.kpi-row { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 10px; margin-bottom: 16px; }
+.kpi { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 14px 16px; }
+.kpi-label { font-size: 11px; color: var(--color-text-secondary); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+.kpi-value { font-size: 22px; font-weight: 500; color: var(--color-text-primary); }
+.kpi-sub { font-size: 11px; color: var(--color-text-secondary); margin-top: 4px; }
+.kpi-red .kpi-value { color: #A32D2D; }
+.kpi-green .kpi-value { color: #3B6D11; }
+.charts-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+.charts-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+.card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 14px 16px; }
+.card-title { font-size: 12px; font-weight: 500; color: var(--color-text-secondary); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 12px; }
+th { text-align: left; padding: 6px 10px; font-size: 11px; color: var(--color-text-secondary); border-bottom: 0.5px solid var(--color-border-tertiary); font-weight: 500; }
+td { padding: 6px 10px; border-bottom: 0.5px solid var(--color-border-tertiary); color: var(--color-text-primary); }
+tr:last-child td { border-bottom: none; }
+.badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 500; }
+.badge-active { background: #E6F1FB; color: #185FA5; }
+.badge-closed { background: #EAF3DE; color: #3B6D11; }
+.badge-pipeline { background: #F1EFE8; color: #5F5E5A; }
+.badge-stall { background: #FCEBEB; color: #A32D2D; }
+.badge-warn { background: #FAEEDA; color: #854F0B; }
+.badge-track { background: #EAF3DE; color: #3B6D11; }
+.badge-over { background: #FCEBEB; color: #A32D2D; }
+.badge-fair { background: #EAF3DE; color: #3B6D11; }
+.badge-above { background: #FAEEDA; color: #854F0B; }
+.bar-wrap { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.bar-label { font-size: 12px; color: var(--color-text-secondary); width: 90px; flex-shrink: 0; text-align: right; }
+.bar-bg { flex: 1; background: var(--color-background-secondary); border-radius: 3px; height: 14px; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 3px; }
+.bar-val { font-size: 12px; color: var(--color-text-primary); width: 50px; flex-shrink: 0; }
+.donut-wrap { display: flex; align-items: center; gap: 16px; }
+.legend-item { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--color-text-secondary); margin-bottom: 5px; }
+.legend-dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+.scatter-dot { cursor: pointer; }
+.anomaly-tag { font-size: 10px; background: #FCEBEB; color: #A32D2D; padding: 1px 5px; border-radius: 3px; margin-left: 4px; }
+</style>
+
+<div class="dash">
+  <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:14px;">
+    <div>
+      <div style="font-size:18px; font-weight:500; color:var(--color-text-primary);">M&A Deal Tracker</div>
+      <div style="font-size:12px; color:var(--color-text-secondary);">Transaction Advisory Intelligence Platform — EY</div>
+    </div>
+    <div style="font-size:11px; color:var(--color-text-secondary); background:var(--color-background-secondary); padding:4px 10px; border-radius:4px;">25 deals • Mar 2026</div>
+  </div>
+
+  <div class="page-tabs">
+    <div class="tab active" onclick="showPage('p1',this)">Pipeline Overview</div>
+    <div class="tab" onclick="showPage('p2',this)">Stage Velocity</div>
+    <div class="tab" onclick="showPage('p3',this)">Valuation & Fees</div>
+  </div>
+
+  <!-- PAGE 1 -->
+  <div class="page active" id="p1">
+    <div class="kpi-row">
+      <div class="kpi">
+        <div class="kpi-label">Total Pipeline Value</div>
+        <div class="kpi-value">$7,596.8M</div>
+        <div class="kpi-sub">Active + Pipeline deals</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Deals Active</div>
+        <div class="kpi-value">12</div>
+        <div class="kpi-sub">In progress</div>
+      </div>
+      <div class="kpi kpi-green">
+        <div class="kpi-label">Deals Closed</div>
+        <div class="kpi-value">6</div>
+        <div class="kpi-sub">Successfully completed</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Total Advisory Fees</div>
+        <div class="kpi-value">$220.4M</div>
+        <div class="kpi-sub">Across all 25 deals</div>
+      </div>
+    </div>
+
+    <div class="charts-row">
+      <div class="card">
+        <div class="card-title">Deal count by stage</div>
+        <div class="bar-wrap"><div class="bar-label">Sourcing</div><div class="bar-bg"><div class="bar-fill" style="width:28%;background:#378ADD;"></div></div><div class="bar-val">5</div></div>
+        <div class="bar-wrap"><div class="bar-label">Initial Review</div><div class="bar-bg"><div class="bar-fill" style="width:16%;background:#185FA5;"></div></div><div class="bar-val">3</div></div>
+        <div class="bar-wrap"><div class="bar-label">Due Diligence</div><div class="bar-bg"><div class="bar-fill" style="width:33%;background:#0C447C;"></div></div><div class="bar-val">6</div></div>
+        <div class="bar-wrap"><div class="bar-label">Negotiation</div><div class="bar-bg"><div class="bar-fill" style="width:5%;background:#042C53;"></div></div><div class="bar-val">1</div></div>
+        <div class="bar-wrap"><div class="bar-label">Signing</div><div class="bar-bg"><div class="bar-fill" style="width:22%;background:#1D9E75;"></div></div><div class="bar-val">4</div></div>
+        <div class="bar-wrap"><div class="bar-label">Closed</div><div class="bar-bg"><div class="bar-fill" style="width:33%;background:#3B6D11;"></div></div><div class="bar-val">6</div></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Pipeline value by sector</div>
+        <div class="donut-wrap">
+          <div style="position:relative;width:100px;height:100px;flex-shrink:0;">
+            <canvas id="donut1" width="100" height="100"></canvas>
+          </div>
+          <div>
+            <div class="legend-item"><div class="legend-dot" style="background:#378ADD;"></div>Technology 32%</div>
+            <div class="legend-item"><div class="legend-dot" style="background:#1D9E75;"></div>Healthcare 22%</div>
+            <div class="legend-item"><div class="legend-dot" style="background:#EF9F27;"></div>Financial Svcs 24%</div>
+            <div class="legend-item"><div class="legend-dot" style="background:#E24B4A;"></div>Industrial 12%</div>
+            <div class="legend-item"><div class="legend-dot" style="background:#7F77DD;"></div>Consumer 10%</div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Deal value by geography</div>
+        <div class="bar-wrap"><div class="bar-label">India</div><div class="bar-bg"><div class="bar-fill" style="width:72%;background:#378ADD;"></div></div><div class="bar-val">$4,821M</div></div>
+        <div class="bar-wrap"><div class="bar-label">Singapore</div><div class="bar-bg"><div class="bar-fill" style="width:22%;background:#185FA5;"></div></div><div class="bar-val">$1,462M</div></div>
+        <div class="bar-wrap"><div class="bar-label">USA</div><div class="bar-bg"><div class="bar-fill" style="width:13%;background:#0C447C;"></div></div><div class="bar-val">$874M</div></div>
+        <div class="bar-wrap"><div class="bar-label">UK</div><div class="bar-bg"><div class="bar-fill" style="width:11%;background:#1D9E75;"></div></div><div class="bar-val">$724M</div></div>
+        <div class="bar-wrap"><div class="bar-label">Germany</div><div class="bar-bg"><div class="bar-fill" style="width:4%;background:#EF9F27;"></div></div><div class="bar-val">$248M</div></div>
+        <div class="bar-wrap"><div class="bar-label">UAE</div><div class="bar-bg"><div class="bar-fill" style="width:4%;background:#7F77DD;"></div></div><div class="bar-val">$215M</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">All deals</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Deal ID</th><th>Target</th><th>Sector</th><th>Stage</th><th>Value (USD M)</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>DEAL-001</td><td>AlphaWave Technologies</td><td>Technology</td><td>Sourcing</td><td>450.2</td><td><span class="badge badge-pipeline">Pipeline</span></td></tr>
+            <tr><td>DEAL-002</td><td>Helix Pharma</td><td>Healthcare</td><td>Sourcing</td><td>439.5</td><td><span class="badge badge-pipeline">Pipeline</span></td></tr>
+            <tr><td>DEAL-003</td><td>NovaBridge Capital</td><td>Financial Svcs</td><td>Signing</td><td>189.5</td><td><span class="badge badge-active">Active</span></td></tr>
+            <tr><td>DEAL-004</td><td>SteelPath Industries</td><td>Industrial</td><td>Due Diligence</td><td>152.0</td><td><span class="badge badge-active">Active</span></td></tr>
+            <tr><td>DEAL-005</td><td>FreshMart Retail</td><td>Consumer</td><td>Closed</td><td>371.4</td><td><span class="badge badge-closed">Closed</span></td></tr>
+            <tr><td>DEAL-006</td><td>CloudSpark Inc</td><td>Technology</td><td>Closed</td><td>273.3</td><td><span class="badge badge-closed">Closed</span></td></tr>
+            <tr><td>DEAL-007</td><td>MedCore Diagnostics<span class="anomaly-tag">ANOMALY</span></td><td>Healthcare</td><td>Initial Review</td><td>820.0</td><td><span class="badge badge-pipeline">Pipeline</span></td></tr>
+            <tr><td>DEAL-008</td><td>Crestline Finance</td><td>Financial Svcs</td><td>Due Diligence</td><td>492.3</td><td><span class="badge badge-active">Active</span></td></tr>
+            <tr><td>DEAL-009</td><td>Precision Engineering</td><td>Industrial</td><td>Sourcing</td><td>211.0</td><td><span class="badge badge-pipeline">Pipeline</span></td></tr>
+            <tr><td>DEAL-014</td><td>Ironforge Metals<span class="anomaly-tag">ANOMALY</span></td><td>Industrial</td><td>Closed</td><td>152.0</td><td><span class="badge badge-closed">Closed</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE 2 -->
+  <div class="page" id="p2">
+    <div class="kpi-row">
+      <div class="kpi">
+        <div class="kpi-label">Avg Days in Current Stage</div>
+        <div class="kpi-value">28.5</div>
+        <div class="kpi-sub">days per deal</div>
+      </div>
+      <div class="kpi kpi-red">
+        <div class="kpi-label">Stalled Deals</div>
+        <div class="kpi-value">2</div>
+        <div class="kpi-sub">Require intervention</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Velocity vs Benchmark</div>
+        <div class="kpi-value">101.7%</div>
+        <div class="kpi-sub">Near benchmark</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Deals in Due Diligence</div>
+        <div class="kpi-value">6</div>
+        <div class="kpi-sub">Highest risk stage</div>
+      </div>
+    </div>
+
+    <div class="charts-row-2">
+      <div class="card">
+        <div class="card-title">Avg days vs benchmark by stage</div>
+        <div style="margin-bottom:6px;display:flex;gap:12px;font-size:11px;">
+          <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#378ADD;display:inline-block;"></span>Actual</span>
+          <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#F1EFE8;border:0.5px solid #B4B2A9;display:inline-block;"></span>Benchmark</span>
+        </div>
+        <div class="bar-wrap"><div class="bar-label">Sourcing</div><div class="bar-bg"><div class="bar-fill" style="width:58%;background:#378ADD;"></div></div><div class="bar-val">35d / 30d</div></div>
+        <div class="bar-wrap"><div class="bar-label">Initial Review</div><div class="bar-bg"><div class="bar-fill" style="width:40%;background:#378ADD;"></div></div><div class="bar-val">26d / 21d</div></div>
+        <div class="bar-wrap"><div class="bar-label">Due Diligence</div><div class="bar-bg"><div class="bar-fill" style="width:100%;background:#E24B4A;"></div></div><div class="bar-val">53d / 45d</div></div>
+        <div class="bar-wrap"><div class="bar-label">Negotiation</div><div class="bar-bg"><div class="bar-fill" style="width:57%;background:#378ADD;"></div></div><div class="bar-val">34d / 30d</div></div>
+        <div class="bar-wrap"><div class="bar-label">Signing</div><div class="bar-bg"><div class="bar-fill" style="width:35%;background:#1D9E75;"></div></div><div class="bar-val">17d / 14d</div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Stalled deals — intervention required</div>
+        <table>
+          <thead><tr><th>Deal</th><th>Target</th><th>Stage</th><th>Days</th><th>Benchmark</th><th>Flag</th><th>Action</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>DEAL-003</td>
+              <td>NovaBridge Capital</td>
+              <td>Due Diligence</td>
+              <td style="color:#A32D2D;font-weight:500;">132d</td>
+              <td>45d</td>
+              <td><span class="badge badge-stall">CRITICAL STALL</span></td>
+              <td style="font-size:11px;color:var(--color-text-secondary);">Escalate to senior advisor</td>
+            </tr>
+            <tr>
+              <td>DEAL-019</td>
+              <td>FoundryTech</td>
+              <td>Due Diligence</td>
+              <td style="color:#A32D2D;font-weight:500;">128d</td>
+              <td>45d</td>
+              <td><span class="badge badge-stall">CRITICAL STALL</span></td>
+              <td style="font-size:11px;color:var(--color-text-secondary);">Escalate to senior advisor</td>
+            </tr>
+          </tbody>
+        </table>
+        <div style="margin-top:12px;font-size:11px;color:var(--color-text-secondary);background:var(--color-background-secondary);padding:8px 10px;border-radius:6px;">
+          Both deals stalled at 3x typical Due Diligence duration. Risk of client disengagement is HIGH.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE 3 -->
+  <div class="page" id="p3">
+    <div class="kpi-row">
+      <div class="kpi">
+        <div class="kpi-label">Avg EV/EBITDA Multiple</div>
+        <div class="kpi-value">16.0x</div>
+        <div class="kpi-sub">Across all deals</div>
+      </div>
+      <div class="kpi kpi-red">
+        <div class="kpi-label">Overvalued Deals</div>
+        <div class="kpi-value">1</div>
+        <div class="kpi-sub">DEAL-007 — 116% premium</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Avg Fee % of Deal Value</div>
+        <div class="kpi-value">2.44%</div>
+        <div class="kpi-sub">Sector norm 1.5–3.0%</div>
+      </div>
+      <div class="kpi kpi-red">
+        <div class="kpi-label">Fee Anomaly Count</div>
+        <div class="kpi-value">1</div>
+        <div class="kpi-sub">DEAL-014 — 7.1% fee</div>
+      </div>
+    </div>
+
+    <div class="charts-row-2">
+      <div class="card">
+        <div class="card-title">EV/EBITDA multiple vs sector benchmark</div>
+        <div style="margin-bottom:8px;font-size:11px;color:var(--color-text-secondary);">Dashed line = sector benchmark</div>
+        <div style="position:relative;height:180px;">
+          <canvas id="evChart"></canvas>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Advisory fee % of deal value</div>
+        <div style="margin-bottom:8px;font-size:11px;color:var(--color-text-secondary);">Reference line at 3.0% — DEAL-014 spikes at 7.1%</div>
+        <div style="position:relative;height:180px;">
+          <canvas id="feeChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Valuation intelligence — all deals</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Deal</th><th>Target</th><th>Sector</th><th>EV/EBITDA</th><th>Benchmark</th><th>Premium</th><th>Fee %</th><th>Flag</th></tr></thead>
+          <tbody>
+            <tr><td>DEAL-007</td><td><strong>MedCore Diagnostics</strong></td><td>Healthcare</td><td style="color:#A32D2D;font-weight:500;">31.4x</td><td>18.0x</td><td style="color:#A32D2D;">+74.4%</td><td>2.1%</td><td><span class="badge badge-over">OVERVALUED</span></td></tr>
+            <tr><td>DEAL-014</td><td><strong>Ironforge Metals</strong></td><td>Industrial</td><td>11.7x</td><td>10.0x</td><td>+17%</td><td style="color:#A32D2D;font-weight:500;">7.1%</td><td><span class="badge badge-over">FEE ANOMALY</span></td></tr>
+            <tr><td>DEAL-006</td><td>CloudSpark Inc</td><td>Technology</td><td>23.6x</td><td>22.5x</td><td>+4.9%</td><td>2.3%</td><td><span class="badge badge-fair">FAIRLY VALUED</span></td></tr>
+            <tr><td>DEAL-016</td><td>Quantum Analytics</td><td>Technology</td><td>24.1x</td><td>22.5x</td><td>+7.1%</td><td>2.2%</td><td><span class="badge badge-fair">FAIRLY VALUED</span></td></tr>
+            <tr><td>DEAL-012</td><td>GenomeAxis Bio</td><td>Healthcare</td><td>20.5x</td><td>18.0x</td><td>+13.9%</td><td>2.5%</td><td><span class="badge badge-above">ABOVE BENCHMARK</span></td></tr>
+            <tr><td>DEAL-011</td><td>DataSentry Systems</td><td>Technology</td><td>19.4x</td><td>22.5x</td><td>-13.8%</td><td>1.9%</td><td><span class="badge badge-fair">FAIRLY VALUED</span></td></tr>
+            <tr><td>DEAL-009</td><td>Precision Engineering</td><td>Industrial</td><td>8.8x</td><td>10.0x</td><td>-12%</td><td>2.0%</td><td><span class="badge badge-fair">FAIRLY VALUED</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+function showPage(id, tab) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  tab.classList.add('active');
+  if(id === 'p3') { setTimeout(buildCharts, 50); }
+}
+
+function buildCharts() {
+  if(window.evBuilt) return;
+  window.evBuilt = true;
+
+  new Chart(document.getElementById('evChart'), {
+    type: 'bar',
+    data: {
+      labels: ['D-001','D-007','D-008','D-011','D-012','D-016','D-021'],
+      datasets: [{
+        label: 'EV/EBITDA',
+        data: [23.0, 31.4, 12.8, 19.4, 20.5, 24.1, 23.2],
+        backgroundColor: ['#378ADD','#E24B4A','#378ADD','#378ADD','#378ADD','#378ADD','#378ADD'],
+        borderRadius: 3
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false },
+        annotation: { annotations: { line1: { type: 'line', yMin: 18, yMax: 18, borderColor: '#EF9F27', borderWidth: 1.5, borderDash: [4,4] }}}},
+      scales: { y: { beginAtZero: true, ticks: { font: { size: 10 }, color: '#888780' }, grid: { color: 'rgba(0,0,0,0.06)' } }, x: { ticks: { font: { size: 10 }, color: '#888780' }, grid: { display: false } } }
+    }
+  });
+
+  new Chart(document.getElementById('feeChart'), {
+    type: 'bar',
+    data: {
+      labels: ['D-003','D-004','D-005','D-007','D-008','D-014','D-016'],
+      datasets: [{
+        label: 'Fee %',
+        data: [2.1, 2.3, 1.9, 2.1, 2.4, 7.1, 2.2],
+        backgroundColor: ['#378ADD','#378ADD','#378ADD','#378ADD','#378ADD','#E24B4A','#378ADD'],
+        borderRadius: 3
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: { y: { beginAtZero: true, ticks: { font: { size: 10 }, color: '#888780', callback: v => v+'%' }, grid: { color: 'rgba(0,0,0,0.06)' } }, x: { ticks: { font: { size: 10 }, color: '#888780' }, grid: { display: false } } }
+    }
+  });
+}
+</script>

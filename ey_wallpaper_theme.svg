@@ -1,0 +1,67 @@
+
+<svg width="100%" viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg">
+  <!-- Base background -->
+  <rect width="1280" height="720" fill="#1A1A1A"/>
+
+  <!-- Subtle grid lines -->
+  <line x1="0" y1="180" x2="1280" y2="180" stroke="#2E2E2E" stroke-width="0.5"/>
+  <line x1="0" y1="360" x2="1280" y2="360" stroke="#2E2E2E" stroke-width="0.5"/>
+  <line x1="0" y1="540" x2="1280" y2="540" stroke="#2E2E2E" stroke-width="0.5"/>
+  <line x1="320" y1="0" x2="320" y2="720" stroke="#2E2E2E" stroke-width="0.5"/>
+  <line x1="640" y1="0" x2="640" y2="720" stroke="#2E2E2E" stroke-width="0.5"/>
+  <line x1="960" y1="0" x2="960" y2="720" stroke="#2E2E2E" stroke-width="0.5"/>
+
+  <!-- Bottom yellow accent bar -->
+  <rect x="0" y="700" width="1280" height="20" fill="#FFE600"/>
+
+  <!-- Left yellow vertical accent -->
+  <rect x="0" y="0" width="6" height="700" fill="#FFE600"/>
+
+  <!-- Top left corner block -->
+  <rect x="0" y="0" width="280" height="70" fill="#2E2E2E"/>
+  <rect x="0" y="0" width="6" height="70" fill="#FFE600"/>
+  <text x="24" y="28" font-family="Arial" font-size="13" font-weight="700" fill="#FFE600" letter-spacing="2">EY</text>
+  <text x="24" y="48" font-family="Arial" font-size="10" fill="#888" letter-spacing="1">TRANSACTION ADVISORY SERVICES</text>
+  <text x="24" y="62" font-family="Arial" font-size="9" fill="#555">Building a better working world</text>
+
+  <!-- Large decorative circles top right -->
+  <circle cx="1180" cy="80" r="180" fill="none" stroke="#2E2E2E" stroke-width="0.5"/>
+  <circle cx="1180" cy="80" r="130" fill="none" stroke="#2E2E2E" stroke-width="0.5"/>
+  <circle cx="1180" cy="80" r="80" fill="none" stroke="#FFE600" stroke-width="0.5" opacity="0.3"/>
+  <circle cx="1180" cy="80" r="30" fill="#FFE600" opacity="0.08"/>
+
+  <!-- Decorative circles bottom left -->
+  <circle cx="100" cy="640" r="150" fill="none" stroke="#2E2E2E" stroke-width="0.5"/>
+  <circle cx="100" cy="640" r="100" fill="none" stroke="#FFE600" stroke-width="0.5" opacity="0.2"/>
+  <circle cx="100" cy="640" r="50" fill="#FFE600" opacity="0.06"/>
+
+  <!-- Center diagonal lines -->
+  <line x1="500" y1="0" x2="780" y2="720" stroke="#FFE600" stroke-width="0.3" opacity="0.15"/>
+  <line x1="540" y1="0" x2="820" y2="720" stroke="#FFE600" stroke-width="0.3" opacity="0.1"/>
+  <line x1="460" y1="0" x2="740" y2="720" stroke="#2E2E2E" stroke-width="0.5" opacity="0.8"/>
+
+  <!-- Center text block -->
+  <text x="640" y="340" font-family="Arial" font-size="42" font-weight="700" fill="#FFE600" text-anchor="middle" opacity="0.06" letter-spacing="8">M&A DEAL TRACKER</text>
+  <text x="640" y="390" font-family="Arial" font-size="16" fill="#555" text-anchor="middle" letter-spacing="4">TRANSACTION ADVISORY INTELLIGENCE PLATFORM</text>
+
+  <!-- Bottom left label -->
+  <text x="24" y="688" font-family="Arial" font-size="9" fill="#555" letter-spacing="1">CONFIDENTIAL — EY INTERNAL USE ONLY</text>
+
+  <!-- Bottom right label -->
+  <text x="1256" y="688" font-family="Arial" font-size="9" fill="#555" text-anchor="end" letter-spacing="1">MARCH 2026</text>
+
+  <!-- Small yellow dots scattered -->
+  <circle cx="320" cy="180" r="3" fill="#FFE600" opacity="0.4"/>
+  <circle cx="640" cy="180" r="3" fill="#FFE600" opacity="0.4"/>
+  <circle cx="960" cy="180" r="3" fill="#FFE600" opacity="0.4"/>
+  <circle cx="320" cy="360" r="3" fill="#FFE600" opacity="0.4"/>
+  <circle cx="640" cy="360" r="3" fill="#FFE600" opacity="0.4"/>
+  <circle cx="960" cy="360" r="3" fill="#FFE600" opacity="0.4"/>
+  <circle cx="320" cy="540" r="3" fill="#FFE600" opacity="0.4"/>
+  <circle cx="640" cy="540" r="3" fill="#FFE600" opacity="0.4"/>
+  <circle cx="960" cy="540" r="3" fill="#FFE600" opacity="0.4"/>
+
+  <!-- Top right corner tag -->
+  <rect x="1100" y="0" width="180" height="36" fill="#FFE600"/>
+  <text x="1190" y="22" font-family="Arial" font-size="11" font-weight="700" fill="#1A1A1A" text-anchor="middle" letter-spacing="1">POWER BI DASHBOARD</text>
+</svg>

@@ -1,0 +1,7 @@
+stage_id,stage_name,stage_order,typical_days,is_active_stage,stage_type
+1,Sourcing,1,30,1,Pipeline
+2,Initial Review,2,21,1,Pipeline
+3,Due Diligence,3,45,1,Active
+4,Negotiation,4,30,1,Active
+5,Signing,5,14,1,Active
+6,Closed,6,7,0,Completed

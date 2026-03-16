@@ -1,0 +1,26 @@
+deal_id,target_name,acquirer_name,sector_id,geography,deal_type,deal_value_usd_m,ebitda_usd_m,ev_ebitda_multiple,advisory_fee_usd_m,current_stage_id,deal_start_date_id,lead_advisor,deal_status
+DEAL-001,AlphaWave Technologies,EY Client — TechVentures Global,1,India,Merger,450.2,19.6,23.0,12.33,1,20240218,Ananya Singh,Pipeline
+DEAL-002,Helix Pharma,EY Client — HealthEquity Partners,2,India,Majority Stake,439.5,23.3,18.9,8.55,1,20240905,Ananya Singh,Pipeline
+DEAL-003,NovaBridge Capital,EY Client — Apex Capital Group,3,Singapore,Majority Stake,804.9,65.1,12.4,21.37,5,20230912,Rohan Mehta,Active
+DEAL-004,SteelPath Industries,EY Client — Titan Industries Ltd,4,India,Merger,189.5,18.5,10.2,5.48,3,20230915,Sanjay Pillai,Active
+DEAL-005,FreshMart Retail,EY Client — Meridian Retail Corp,5,India,Asset Purchase,371.4,29.9,12.4,6.09,6,20241201,Rohan Mehta,Closed
+DEAL-006,CloudSpark Inc,EY Client — TechVentures Global,1,USA,Merger,273.3,11.6,23.6,5.3,6,20240930,Ananya Singh,Closed
+DEAL-007,MedCore Diagnostics,EY Client — HealthEquity Partners,2,UK,Asset Purchase,820.0,26.7,31.4,11.01,2,20240307,Sanjay Pillai,Pipeline
+DEAL-008,Crestline Finance,EY Client — Apex Capital Group,3,India,Minority Stake,492.3,38.4,12.8,8.45,3,20230810,Priya Iyer,Active
+DEAL-009,Precision Engineering,EY Client — Titan Industries Ltd,4,Germany,Majority Stake,211.0,24.1,8.8,3.91,1,20250601,Ananya Singh,Pipeline
+DEAL-010,Luxe Brands Group,EY Client — Meridian Retail Corp,5,UAE,Majority Stake,352.5,28.2,12.5,6.17,6,20240417,Sanjay Pillai,Closed
+DEAL-011,DataSentry Systems,EY Client — NovaTech Fund,1,India,Full Acquisition,400.2,20.6,19.4,9.15,5,20231213,Sanjay Pillai,Active
+DEAL-012,GenomeAxis Bio,EY Client — HealthEquity Partners,2,India,Full Acquisition,437.0,21.3,20.5,8.21,6,20241124,Priya Iyer,Closed
+DEAL-013,Atlas Leasing,EY Client — Apex Capital Group,3,India,Merger,521.8,38.2,13.7,12.13,3,20231120,Rohan Mehta,Active
+DEAL-014,Ironforge Metals,EY Client — Titan Industries Ltd,4,India,Asset Purchase,152.0,13.0,11.7,10.79,6,20231003,Rohan Mehta,Closed
+DEAL-015,ZenithMart,EY Client — Meridian Retail Corp,5,India,Majority Stake,235.1,17.8,13.2,6.53,1,20240311,Vikram Nair,Pipeline
+DEAL-016,Quantum Analytics,EY Client — NovaTech Fund,1,Singapore,Full Acquisition,349.4,14.5,24.1,10.36,5,20240701,Priya Iyer,Active
+DEAL-017,CuraLife Health,EY Client — HealthEquity Partners,2,USA,Majority Stake,381.9,23.0,16.6,7.41,2,20240615,Sanjay Pillai,Pipeline
+DEAL-018,PeakCredit Corp,EY Client — Apex Capital Group,3,India,Full Acquisition,434.1,27.2,16.0,12.75,1,20240418,Vikram Nair,Pipeline
+DEAL-019,FoundryTech,EY Client — Titan Industries Ltd,4,India,Majority Stake,175.5,20.2,8.7,4.94,5,20230513,Ananya Singh,Active
+DEAL-020,Orbit Consumer Goods,EY Client — Meridian Retail Corp,5,UK,Merger,334.3,23.8,14.0,5.78,4,20250204,Sanjay Pillai,Active
+DEAL-021,NexaCloud,EY Client — TechVentures Global,1,India,Asset Purchase,401.8,17.3,23.2,10.37,6,20230701,Ananya Singh,Closed
+DEAL-022,BioPath Sciences,EY Client — HealthEquity Partners,2,India,Full Acquisition,247.0,15.5,15.9,5.98,3,20230207,Rohan Mehta,Active
+DEAL-023,Sterling Investments,EY Client — Apex Capital Group,3,India,Merger,716.6,48.8,14.7,18.18,3,20230625,Priya Iyer,Active
+DEAL-024,HeavyLift Engineering,EY Client — Titan Industries Ltd,4,India,Merger,130.3,13.6,9.6,2.27,3,20230325,Rohan Mehta,Active
+DEAL-025,BrandForce Retail,EY Client — Meridian Retail Corp,5,India,Minority Stake,263.2,22.5,11.7,6.89,5,20230527,Sanjay Pillai,Active
